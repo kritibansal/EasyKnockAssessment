@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+  <script src="index.js"></script>
+<body>
+  <div ng-app="myApp" ng-controller="myCtrl" ng-init="init()">
+    <div class="offset-md-4 col-md-4">
+      <input id="searchInput" class="form-control mt-4" type="text" placeholder="Enter key to search" hidden>
+      <button id="searchButton" class="form-control btn btn-success mt-2" hidden>Search</button>
+    </div>
+    <div style="width: 100vw; height: 90%;">
+      <!-- <p ng-bind="houses"></p> -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th ng-repeat="house in houses">House {{$index + 1}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Search here:</th>
+            <td ng-repeat="house in houses">
+              <input class="form-control" placeholder="Enter key to search" type="text" ng-model="searchText"/>
+              <button class="btn btn-secondary mt-2" ng-click="search(searchText, house, $index)">Search</button>
+              <p class="text mt-2">{{searchResults[$index]}}</p>
+            </td>
+          </tr>
+          <tr ng-repeat="houseKey in houseKeys">
+            <th>{{houseKey}}</th>
+            <td ng-repeat="house in houses">{{house[houseKey] ? house[houseKey] : 'NA'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
